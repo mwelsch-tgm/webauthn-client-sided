@@ -1,0 +1,1 @@
+sudo docker run --rm --name some-nginx -v /home/moritz/git/not_synced/webauthn:/usr/share/nginx/html:ro -p 8080:80 nginx

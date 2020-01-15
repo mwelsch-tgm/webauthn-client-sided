@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script type="text/javascript">
+    randomStringFromServer = "1234567890";
+    var credential = null;
+    const publicKeyCredentialCreationOptions = {
+            challenge: Uint8Array.from(
+                randomStringFromServer, c => c.charCodeAt(0)),
+            rp: {
+                name: "Duo Security",
+               // id: "duosecurity.com",
+            },
+            user: {
+                id: Uint8Array.from(
+                    "UZSL85T9AFC", c => c.charCodeAt(0)),
+                name: "lee@webauthn.guide",
+                displayName: "Lee",
+            },
+            pubKeyCredParams: [{alg: -7, type: "public-key"}],
+            authenticatorSelection: {
+                authenticatorAttachment: "cross-platform",
+            },
+            timeout: 60000,
+            attestation: "direct"
+        };
+        function create(){
+
+            credential = navigator.credentials.create({
+                publicKey: publicKeyCredentialCreationOptions
+            });
+            console.log(credential);
+        }
+        function login(){
+            credential = navigator.credentials.create({
+                publicKey: publicKeyCredentialCreationOptions
+            });
+            console.log(credential);
+        }
+    </script>
+</head>
+<body>
+
+<h1>My First Heading</h1>
+
+<p>My first paragraph.</p>
+Username: <input type="text"><br>
+Register: <input type="button" onclick="create()" value="register"><br>
+Login: <input type="button" onclick="login()" value="login">
+</body>
+</html>
+
